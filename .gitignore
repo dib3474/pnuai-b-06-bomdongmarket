@@ -2,3 +2,6 @@ CLAUDE.md
 
 # Environment Variable
 .env
+
+# Secrets — DB 비밀번호, JWT secret 포함
+farmbroker/src/main/resources/application.yml
