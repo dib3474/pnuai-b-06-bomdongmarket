@@ -12,5 +12,4 @@ public class FarmbrokerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FarmbrokerApplication.class, args);
 	}
-
 }
