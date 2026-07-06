@@ -3,12 +3,16 @@ package com.farmbroker.farmbroker.matching.controller;
 import com.farmbroker.farmbroker.common.response.ApiResponse;
 import com.farmbroker.farmbroker.matching.dto.MatchingApplyRequest;
 import com.farmbroker.farmbroker.matching.dto.MatchingApplyResponse;
+import com.farmbroker.farmbroker.matching.dto.MyMatchingResponse;
+import com.farmbroker.farmbroker.matching.dto.ReceivedMatchingResponse;
 import com.farmbroker.farmbroker.matching.service.MatchingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // 매칭 관련 엔드포인트 컨트롤러.
 // 얇게 유지: 토큰의 userId(@AuthenticationPrincipal — 백엔드 1 JWT 필터 규약)와
@@ -27,5 +31,19 @@ public class MatchingController {
                                                     @AuthenticationPrincipal Long userId) {
         MatchingApplyResponse response = matchingService.apply(userId, request);
         return ApiResponse.success("매칭 신청이 완료되었습니다.", response);
+    }
+
+    // GET /api/matchings/my-requests — 내가 신청한 매칭 목록 (farmer 시점)
+    @GetMapping("/my-requests")
+    public ApiResponse<List<MyMatchingResponse>> getMyRequests(@AuthenticationPrincipal Long userId) {
+        List<MyMatchingResponse> response = matchingService.getMyRequests(userId);
+        return ApiResponse.success("내 신청 목록 조회에 성공했습니다.", response);
+    }
+
+    // GET /api/matchings/received — 내 공간들에 들어온 매칭 신청 목록 (owner 시점)
+    @GetMapping("/received")
+    public ApiResponse<List<ReceivedMatchingResponse>> getReceived(@AuthenticationPrincipal Long userId) {
+        List<ReceivedMatchingResponse> response = matchingService.getReceived(userId);
+        return ApiResponse.success("받은 신청 목록 조회에 성공했습니다.", response);
     }
 }

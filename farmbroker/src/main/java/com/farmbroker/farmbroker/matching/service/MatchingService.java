@@ -6,6 +6,8 @@ import com.farmbroker.farmbroker.matching.domain.Matching;
 import com.farmbroker.farmbroker.matching.domain.MatchingStatus;
 import com.farmbroker.farmbroker.matching.dto.MatchingApplyRequest;
 import com.farmbroker.farmbroker.matching.dto.MatchingApplyResponse;
+import com.farmbroker.farmbroker.matching.dto.MyMatchingResponse;
+import com.farmbroker.farmbroker.matching.dto.ReceivedMatchingResponse;
 import com.farmbroker.farmbroker.matching.repository.MatchingRepository;
 import com.farmbroker.farmbroker.space.domain.Space;
 import com.farmbroker.farmbroker.space.domain.SpaceStatus;
@@ -18,6 +20,11 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 // 매칭 신청/조회/수락/거절 비즈니스 로직.
 // Space 접근은 백엔드 2가 제공하는 SpaceService 계약(getSummaryById 등)만 사용하고
@@ -66,5 +73,33 @@ public class MatchingService {
         matchingRepository.save(matching);
 
         return MatchingApplyResponse.of(matching, space.getOwnerId());
+    }
+
+    // 내가 farmer로서 신청한 목록. 공간 정보(제목/대표이미지/월세/소유자 닉네임)는
+    // 매칭 건마다 단건 조회하면 N+1이 발생하므로 getSummariesByIds 배치 호출 1번으로 채운다.
+    // 삭제된 공간도 Summary가 반환되므로(백엔드 2 계약) 이력에 그대로 노출된다.
+    public List<MyMatchingResponse> getMyRequests(Long userId) {
+        List<Matching> matchings = matchingRepository.findAllByFarmerIdOrderByCreatedAtDesc(userId);
+        if (matchings.isEmpty()) {
+            return List.of();
+        }
+
+        List<Long> spaceIds = matchings.stream()
+                .map(m -> m.getSpace().getId()) // 프록시의 id 접근은 추가 SELECT를 유발하지 않는다
+                .distinct()
+                .toList();
+        Map<Long, SpaceSummary> summaryBySpaceId = spaceService.getSummariesByIds(spaceIds).stream()
+                .collect(Collectors.toMap(SpaceSummary::getId, Function.identity()));
+
+        return matchings.stream()
+                .map(m -> MyMatchingResponse.of(m, summaryBySpaceId.get(m.getSpace().getId())))
+                .toList();
+    }
+
+    // 내가 owner로서 소유한 공간들에 들어온 신청 목록 (space·farmer fetch join으로 로딩)
+    public List<ReceivedMatchingResponse> getReceived(Long userId) {
+        return matchingRepository.findAllReceivedByOwnerId(userId).stream()
+                .map(ReceivedMatchingResponse::from)
+                .toList();
     }
 }
