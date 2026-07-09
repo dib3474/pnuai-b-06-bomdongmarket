@@ -9,7 +9,7 @@ import { DesktopNavigation } from './DesktopNavigation';
 // 브랜드, 데스크탑 네비게이션, 빠른 액션을 담당하는 상단 앱 바입니다.
 export function Header() {
   return (
-    <header className="bg-white/92 sticky top-0 z-20 border-b border-leaf-100 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-leaf-200 bg-white/[0.97] shadow-[0_10px_30px_-24px_rgba(16,32,22,0.45)] backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           className="flex items-center gap-2"
