@@ -3,6 +3,7 @@ package com.farmbroker.farmbroker.space.controller;
 import com.farmbroker.farmbroker.common.response.ApiResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
 import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceListItemResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
 import com.farmbroker.farmbroker.space.service.SpaceService;
 import jakarta.validation.Valid;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // space 도메인 엔드포인트. 얇게 유지: 서비스 위임 + ApiResponse 래핑만 한다.
 // context-path(/api)는 설정에서 처리되므로 매핑에는 /spaces만 쓴다.
@@ -28,6 +31,14 @@ public class SpaceController {
                                              @RequestBody @Valid SpaceCreateRequest request) {
         SpaceResponse response = spaceService.create(userId, request);
         return ApiResponse.success("공간 등록이 완료되었습니다.", response);
+    }
+
+    // GET /api/spaces/my — 내가 등록한 공간 목록 (인증 필요)
+    // /{spaceId}보다 먼저 선언해 경로 우선순위를 명시한다 (Spring은 정확 매칭을 우선하지만 가독성 목적)
+    @GetMapping("/my")
+    public ApiResponse<List<SpaceListItemResponse>> getMy(@AuthenticationPrincipal Long userId) {
+        List<SpaceListItemResponse> response = spaceService.getMy(userId);
+        return ApiResponse.success("내 공간 목록 조회에 성공했습니다.", response);
     }
 
     // GET /api/spaces/{spaceId} — 공간 상세 조회 (비로그인 허용)

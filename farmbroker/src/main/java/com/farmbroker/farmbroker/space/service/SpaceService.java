@@ -6,6 +6,7 @@ import com.farmbroker.farmbroker.space.domain.Space;
 import com.farmbroker.farmbroker.space.domain.SpaceImage;
 import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
 import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceListItemResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
 import com.farmbroker.farmbroker.space.repository.SpaceImageRepository;
 import com.farmbroker.farmbroker.space.repository.SpaceRepository;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // space 도메인 비즈니스 로직.
 // 역할(OWNER) 체크는 시큐리티 authorities가 아닌 여기서 수동으로 수행한다 (JWT 필터가 권한을 싣지 않는 팀 정책).
@@ -66,6 +69,29 @@ public class SpaceService {
                 .map(SpaceImage::getImageUrl)
                 .toList();
         return SpaceDetailResponse.from(space, imageUrls);
+    }
+
+    // 내가 등록한 공간 — status 무관 전부, deleted 제외, 최신순. MVP 기준 페이징 없음 (명세 2.4)
+    public List<SpaceListItemResponse> getMy(Long userId) {
+        List<Space> spaces = spaceRepository.findByOwnerIdAndDeletedFalseOrderByCreatedAtDesc(userId);
+        Map<Long, String> thumbnails = findThumbnails(spaces);
+        return spaces.stream()
+                .map(space -> SpaceListItemResponse.from(space, thumbnails.get(space.getId())))
+                .toList();
+    }
+
+    // 여러 공간의 대표 이미지(sortOrder 최솟값)를 한 쿼리로 조회해 N+1을 방지한다.
+    // 이미지가 없는 공간은 맵에 없으므로 imageUrl이 null로 내려간다.
+    private Map<Long, String> findThumbnails(List<Space> spaces) {
+        if (spaces.isEmpty()) {
+            return Map.of();
+        }
+        List<Long> spaceIds = spaces.stream().map(Space::getId).toList();
+        Map<Long, String> thumbnails = new HashMap<>();
+        for (SpaceImage image : spaceImageRepository.findBySpaceIdInOrderBySortOrderAsc(spaceIds)) {
+            thumbnails.putIfAbsent(image.getSpace().getId(), image.getImageUrl());
+        }
+        return thumbnails;
     }
 
     // 배열 순서대로 sortOrder를 매겨 저장한다 (0번 = 대표 이미지). null/빈 배열이면 저장 없이 빈 목록 반환
