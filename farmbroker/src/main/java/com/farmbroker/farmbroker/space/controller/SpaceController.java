@@ -2,6 +2,7 @@ package com.farmbroker.farmbroker.space.controller;
 
 import com.farmbroker.farmbroker.common.response.ApiResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
+import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
 import com.farmbroker.farmbroker.space.service.SpaceService;
 import jakarta.validation.Valid;
@@ -27,5 +28,12 @@ public class SpaceController {
                                              @RequestBody @Valid SpaceCreateRequest request) {
         SpaceResponse response = spaceService.create(userId, request);
         return ApiResponse.success("공간 등록이 완료되었습니다.", response);
+    }
+
+    // GET /api/spaces/{spaceId} — 공간 상세 조회 (비로그인 허용)
+    @GetMapping("/{spaceId}")
+    public ApiResponse<SpaceDetailResponse> getDetail(@PathVariable Long spaceId) {
+        SpaceDetailResponse response = spaceService.getDetail(spaceId);
+        return ApiResponse.success("공간 상세 조회에 성공했습니다.", response);
     }
 }

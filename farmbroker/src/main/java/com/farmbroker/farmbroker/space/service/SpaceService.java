@@ -5,6 +5,7 @@ import com.farmbroker.farmbroker.common.exception.ErrorCode;
 import com.farmbroker.farmbroker.space.domain.Space;
 import com.farmbroker.farmbroker.space.domain.SpaceImage;
 import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
+import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
 import com.farmbroker.farmbroker.space.repository.SpaceImageRepository;
 import com.farmbroker.farmbroker.space.repository.SpaceRepository;
@@ -54,6 +55,17 @@ public class SpaceService {
 
         List<String> imageUrls = saveImages(space, request.getImageUrls());
         return SpaceResponse.from(space, imageUrls);
+    }
+
+    // 공간 상세 조회 — 공개 API. 삭제된 공간은 존재하지 않는 것처럼 404 처리한다.
+    // (BE3 내부용 getSummaryById와 정책이 다름: 내부용은 deleted여도 반환)
+    public SpaceDetailResponse getDetail(Long spaceId) {
+        Space space = spaceRepository.findByIdAndDeletedFalse(spaceId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.SPACE_NOT_FOUND));
+        List<String> imageUrls = spaceImageRepository.findBySpaceIdOrderBySortOrderAsc(spaceId).stream()
+                .map(SpaceImage::getImageUrl)
+                .toList();
+        return SpaceDetailResponse.from(space, imageUrls);
     }
 
     // 배열 순서대로 sortOrder를 매겨 저장한다 (0번 = 대표 이미지). null/빈 배열이면 저장 없이 빈 목록 반환
