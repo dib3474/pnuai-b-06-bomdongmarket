@@ -4,10 +4,12 @@ import com.farmbroker.farmbroker.common.exception.BusinessException;
 import com.farmbroker.farmbroker.common.exception.ErrorCode;
 import com.farmbroker.farmbroker.space.domain.Space;
 import com.farmbroker.farmbroker.space.domain.SpaceImage;
+import com.farmbroker.farmbroker.space.domain.SpaceStatus;
 import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
 import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceListItemResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceUpdateRequest;
 import com.farmbroker.farmbroker.space.repository.SpaceImageRepository;
 import com.farmbroker.farmbroker.space.repository.SpaceRepository;
 import com.farmbroker.farmbroker.user.domain.User;
@@ -78,6 +80,53 @@ public class SpaceService {
         return spaces.stream()
                 .map(space -> SpaceListItemResponse.from(space, thumbnails.get(space.getId())))
                 .toList();
+    }
+
+    // 공간 부분수정 — 등록자 본인만. null이 아닌 필드만 반영하고, imageUrls는 전체 교체(replace)한다.
+    @Transactional
+    public SpaceResponse update(Long userId, Long spaceId, SpaceUpdateRequest request) {
+        Space space = spaceRepository.findByIdAndDeletedFalse(spaceId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.SPACE_NOT_FOUND));
+        validateOwner(space, userId);
+
+        if (request.getStatus() != null) {
+            space.changeStatus(parseUpdatableStatus(request.getStatus()));
+        }
+        space.update(request.getTitle(), request.getAddress(), request.getArea(),
+                request.getMonthlyRent(), request.getFloor(), request.getHasWater(),
+                request.getHasElectricity(), request.getHasVentilation(), request.getDescription());
+
+        List<String> imageUrls;
+        if (request.getImageUrls() != null) {
+            spaceImageRepository.deleteBySpaceId(spaceId);
+            imageUrls = saveImages(space, request.getImageUrls());
+        } else {
+            imageUrls = spaceImageRepository.findBySpaceIdOrderBySortOrderAsc(spaceId).stream()
+                    .map(SpaceImage::getImageUrl)
+                    .toList();
+        }
+
+        // @LastModifiedDate는 flush 시점에 갱신되므로, 응답에 최신 updatedAt을 담기 위해 먼저 flush한다
+        spaceRepository.flush();
+        return SpaceResponse.from(space, imageUrls);
+    }
+
+    private void validateOwner(Space space, Long userId) {
+        if (!space.getOwner().getId().equals(userId)) {
+            throw new BusinessException(ErrorCode.NOT_SPACE_OWNER);
+        }
+    }
+
+    // OWNER가 직접 전환할 수 있는 상태는 AVAILABLE/CLOSED뿐. MATCHED는 매칭 도메인(BE3) 전용이며,
+    // 알 수 없는 문자열도 동일하게 INVALID_STATUS_CHANGE로 응답한다 (명세 2.5)
+    private SpaceStatus parseUpdatableStatus(String status) {
+        if (SpaceStatus.AVAILABLE.name().equals(status)) {
+            return SpaceStatus.AVAILABLE;
+        }
+        if (SpaceStatus.CLOSED.name().equals(status)) {
+            return SpaceStatus.CLOSED;
+        }
+        throw new BusinessException(ErrorCode.INVALID_STATUS_CHANGE);
     }
 
     // 여러 공간의 대표 이미지(sortOrder 최솟값)를 한 쿼리로 조회해 N+1을 방지한다.

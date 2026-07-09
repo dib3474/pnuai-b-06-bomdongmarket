@@ -5,6 +5,7 @@ import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
 import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceListItemResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceUpdateRequest;
 import com.farmbroker.farmbroker.space.service.SpaceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,14 @@ public class SpaceController {
     public ApiResponse<SpaceDetailResponse> getDetail(@PathVariable Long spaceId) {
         SpaceDetailResponse response = spaceService.getDetail(spaceId);
         return ApiResponse.success("공간 상세 조회에 성공했습니다.", response);
+    }
+
+    // PATCH /api/spaces/{spaceId} — 공간 부분수정 (등록자 본인만)
+    @PatchMapping("/{spaceId}")
+    public ApiResponse<SpaceResponse> update(@AuthenticationPrincipal Long userId,
+                                             @PathVariable Long spaceId,
+                                             @RequestBody @Valid SpaceUpdateRequest request) {
+        SpaceResponse response = spaceService.update(userId, spaceId, request);
+        return ApiResponse.success("공간 정보가 수정되었습니다.", response);
     }
 }
