@@ -1,6 +1,6 @@
 package com.farmbroker.farmbroker.ai.prompt;
 
-import com.farmbroker.farmbroker.space.dto.SpaceSummary;
+import com.farmbroker.farmbroker.matching.support.SpaceSummary;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 

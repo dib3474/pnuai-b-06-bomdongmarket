@@ -18,7 +18,7 @@ public interface MatchingRepository extends JpaRepository<Matching, Long> {
 
     boolean existsBySpaceIdAndFarmerIdAndStatus(Long spaceId, Long farmerId, MatchingStatus status);
 
-    // 내가 farmer로서 신청한 목록 — 공간 정보는 SpaceService.getSummariesByIds 배치로 별도 조회
+    // 내가 farmer로서 신청한 목록 — 공간 정보는 getSummariesByIds(공간 계약) 배치로 별도 조회
     List<Matching> findAllByFarmerIdOrderByCreatedAtDesc(Long farmerId);
 
     // 내가 owner인 공간들에 들어온 신청 목록

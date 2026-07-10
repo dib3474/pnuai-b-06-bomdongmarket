@@ -14,8 +14,8 @@ import com.farmbroker.farmbroker.common.exception.ErrorCode;
 import com.farmbroker.farmbroker.crop.domain.Crop;
 import com.farmbroker.farmbroker.crop.repository.CropRepository;
 import com.farmbroker.farmbroker.space.domain.Space;
-import com.farmbroker.farmbroker.space.dto.SpaceSummary;
-import com.farmbroker.farmbroker.space.service.SpaceService;
+import com.farmbroker.farmbroker.matching.support.SpaceSummary;
+import com.farmbroker.farmbroker.matching.support.SpaceContractAdapter;
 import com.farmbroker.farmbroker.user.domain.User;
 import com.farmbroker.farmbroker.user.repository.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -46,7 +46,7 @@ public class AiRecommendService {
     private final AiRecommendationRepository aiRecommendationRepository;
     private final CropRepository cropRepository;
     private final UserRepository userRepository;
-    private final SpaceService spaceService;
+    private final SpaceContractAdapter spaceContractAdapter; // BE2 SpaceService 계약 제공 시 교체
     private final EntityManager entityManager;
     private final ObjectMapper objectMapper;
 
@@ -55,7 +55,7 @@ public class AiRecommendService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
-        SpaceSummary space = spaceService.getSummaryById(request.getSpaceId()); // 미존재 시 SPACE_NOT_FOUND
+        SpaceSummary space = spaceContractAdapter.getSummaryById(request.getSpaceId()); // 미존재 시 SPACE_NOT_FOUND
         if (space.isDeleted()) {
             throw new BusinessException(ErrorCode.SPACE_NOT_FOUND); // 삭제된 공간은 본 모듈에서 404 처리 (status는 무관)
         }

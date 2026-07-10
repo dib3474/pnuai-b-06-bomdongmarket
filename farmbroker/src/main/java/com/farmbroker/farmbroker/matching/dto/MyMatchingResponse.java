@@ -2,7 +2,7 @@ package com.farmbroker.farmbroker.matching.dto;
 
 import com.farmbroker.farmbroker.matching.domain.Matching;
 import com.farmbroker.farmbroker.matching.domain.MatchingStatus;
-import com.farmbroker.farmbroker.space.dto.SpaceSummary;
+import com.farmbroker.farmbroker.matching.support.SpaceSummary;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
