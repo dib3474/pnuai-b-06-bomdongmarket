@@ -27,11 +27,6 @@ public enum ErrorCode {
     VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "요청 값이 올바르지 않습니다."),
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류가 발생했습니다."),
 
-    // ── space (소유: 백엔드 2) ────────────────────────────────────────────────
-    // 백엔드 2 space PR 머지 전 임시 정의 — 머지 시 백엔드 2 정의와 중복되면 이쪽을 제거한다.
-    SPACE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 공간입니다."),
-    SPACE_NOT_AVAILABLE(HttpStatus.CONFLICT, "현재 매칭 가능한 상태의 공간이 아닙니다."),
-
     // ── matching (소유: 백엔드 3) ─────────────────────────────────────────────
     MATCHING_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 매칭 신청입니다."),
     MATCHING_FORBIDDEN(HttpStatus.FORBIDDEN, "해당 매칭에 대한 권한이 없습니다."),
