@@ -1,14 +1,12 @@
-import { HeroSection } from '@/pages/home/components/HeroSection';
-import { MarketPreviewSection } from '@/pages/home/components/MarketPreviewSection';
-import { ServiceOverviewSection } from '@/pages/home/components/ServiceOverviewSection';
+import { CampaignCarousel } from '@/pages/home/components/CampaignCarousel';
+import { RoleJourneySections } from '@/pages/home/components/RoleJourneySections';
 
-// 온보딩, 역할 선택, 핵심 데모 진입점을 묶은 웹 첫 화면입니다.
+// 세 사용자 역할과 지역 순환 가치를 캠페인 포스터와 역할별 흐름으로 소개합니다.
 export function HomePage() {
   return (
     <>
-      <HeroSection />
-      <ServiceOverviewSection />
-      <MarketPreviewSection />
+      <CampaignCarousel />
+      <RoleJourneySections />
     </>
   );
 }

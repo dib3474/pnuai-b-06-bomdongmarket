@@ -1,23 +1,54 @@
-import { screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { act, screen, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
-import { renderWithProviders } from '@/test/renderWithProviders';
 import { HomePage } from '@/pages/home/HomePage';
-import { roleCards } from '@/pages/home/constants/homeContent';
+import { campaignSlides, roleSections } from '@/pages/home/constants/homeContent';
+import { renderWithProviders } from '@/test/renderWithProviders';
 
 describe('HomePage', () => {
-  it('온보딩 문구와 역할 상수를 렌더링한다', () => {
+  it('캠페인과 세 역할별 둘러보기 섹션을 렌더링한다', () => {
     renderWithProviders(<HomePage />);
 
     expect(
-      screen.getByRole('heading', {
-        name: /비어 있는 공간을 도심 스마트팜으로 바꾸세요/i,
-      }),
+      screen.getByRole('heading', { name: campaignSlides[0].title }),
     ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /시작하기/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: '봄동마켓 캠페인' })).toBeInTheDocument();
 
-    roleCards.forEach((role) => {
-      expect(screen.getByText(role.label)).toBeInTheDocument();
+    roleSections.forEach((role) => {
+      const heading = screen.getByRole('heading', { name: role.title });
+      const section = heading.closest('section');
+
+      expect(section).not.toBeNull();
+      expect(
+        within(section as HTMLElement).getByRole('link', {
+          name: new RegExp(role.ctaLabel),
+        }),
+      ).toHaveAttribute('href', role.href);
     });
+  });
+
+  it('캠페인 포스터를 자동으로 다음 항목으로 전환한다', () => {
+    vi.useFakeTimers();
+
+    try {
+      renderWithProviders(<HomePage />);
+      const firstIndicator = screen.getByRole('button', {
+        name: `${campaignSlides[0].eyebrow} 보기`,
+      });
+      const secondIndicator = screen.getByRole('button', {
+        name: `${campaignSlides[1].eyebrow} 보기`,
+      });
+
+      expect(firstIndicator).toHaveAttribute('aria-current', 'true');
+
+      act(() => {
+        vi.advanceTimersByTime(5500);
+      });
+
+      expect(secondIndicator).toHaveAttribute('aria-current', 'true');
+    } finally {
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    }
   });
 });
