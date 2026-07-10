@@ -11,5 +11,3 @@ export const facilityLabels = {
   hasElectricity: '전기',
   hasVentilation: '환기',
 } as const;
-
-export const registrationSteps = ['위치', '조건', '사진', '확인'] as const;

@@ -8,7 +8,6 @@ import { Input } from '@/components/common/Input';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { ROUTES } from '@/constants/routes';
 import { createSpace } from '@/services/spaceService';
-import { registrationSteps } from '@/pages/spaces/constants/spaceOptions';
 
 // 공실 제공자가 API 명세의 필수 공간 필드를 입력하는 모바일 우선 등록 폼입니다.
 export function SpaceCreatePage() {
@@ -49,48 +48,34 @@ export function SpaceCreatePage() {
         <h1 className="mt-2 text-3xl font-black text-ink-900">새 재배 공간 등록</h1>
       </div>
 
-      <div className="mb-6 grid grid-cols-4 gap-2">
-        {registrationSteps.map((step, index) => (
-          <div key={step}>
-            <div className="h-1.5 rounded-full bg-leaf-100">
-              <div
-                className="h-full rounded-full bg-leaf-700"
-                style={{ width: `${index === 0 ? 100 : index === 1 ? 66 : 33}%` }}
-              />
-            </div>
-            <p className="mt-2 text-xs font-semibold text-slate-500">{step}</p>
-          </div>
-        ))}
-      </div>
-
       <form className="grid gap-5" onSubmit={handleSubmit}>
         <Card className="grid gap-4 p-5">
           <Input
-            defaultValue="부산대 앞 20평 상가 공실"
             label="공간 이름"
             name="title"
+            placeholder="예: 부산대 앞 20평 상가 공실"
             required
           />
           <Input
-            defaultValue="부산광역시 금정구 장전동"
             label="공간 위치"
             name="address"
+            placeholder="예: 부산광역시 금정구 장전동"
             required
           />
           <div className="grid gap-4 sm:grid-cols-3">
             <Input
-              defaultValue="66"
               label="전체 면적"
               min={1}
               name="area"
+              placeholder="예: 66"
               type="number"
             />
-            <Input defaultValue="2" label="층수" name="floor" type="number" />
+            <Input label="층수" name="floor" placeholder="예: 2" type="number" />
             <Input
-              defaultValue="500000"
               label="희망 월세"
               min={0}
               name="monthlyRent"
+              placeholder="예: 500000"
               type="number"
             />
           </div>
@@ -122,8 +107,8 @@ export function SpaceCreatePage() {
             상세 메모
             <textarea
               className="mt-2 min-h-28 w-full rounded-app border border-leaf-100 bg-white px-3 py-3 text-sm text-ink-900 focus:border-leaf-500 focus:outline-none focus:ring-2 focus:ring-leaf-200"
-              defaultValue="채광이 좋고 수도 사용이 가능하며 다단 재배 선반을 배치할 수 있는 상가 공간입니다."
               name="description"
+              placeholder="예: 채광이 좋고 수도 사용이 가능하며 다단 재배 선반을 배치할 수 있는 상가 공간입니다."
             />
           </label>
         </Card>
@@ -162,7 +147,7 @@ export function SpaceCreatePage() {
             </Button>
           ) : (
             <Button className="w-full" disabled={isSaving} type="submit">
-              {isSaving ? '저장 중...' : '다음'}
+              {isSaving ? '등록 중...' : '공간 등록'}
               <ArrowRight className="h-5 w-5" aria-hidden />
             </Button>
           )}
