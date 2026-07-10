@@ -2,9 +2,9 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { MarketPage } from '../MarketPage';
-import { ProductDetailPage } from '../ProductDetailPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { MarketPage } from '@/pages/market/MarketPage';
+import { ProductDetailPage } from '@/pages/market/ProductDetailPage';
 
 describe('Market pages', () => {
   it('마켓 상품과 카테고리 상호작용을 렌더링한다', async () => {

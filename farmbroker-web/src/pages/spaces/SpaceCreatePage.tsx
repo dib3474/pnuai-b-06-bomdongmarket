@@ -2,13 +2,13 @@ import { ArrowRight, Camera, CheckCircle2, Upload } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../components/common/Button';
-import { Card } from '../../components/common/Card';
-import { Input } from '../../components/common/Input';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { createSpace } from '../../services/spaceService';
-import { registrationSteps } from './constants/spaceOptions';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { Input } from '@/components/common/Input';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { createSpace } from '@/services/spaceService';
+import { registrationSteps } from '@/pages/spaces/constants/spaceOptions';
 
 // 공실 제공자가 API 명세의 필수 공간 필드를 입력하는 모바일 우선 등록 폼입니다.
 export function SpaceCreatePage() {

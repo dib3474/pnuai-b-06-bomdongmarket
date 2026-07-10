@@ -1,9 +1,9 @@
-import { EmptyState } from '../../../components/common/EmptyState';
-import { ErrorState } from '../../../components/common/ErrorState';
-import { LoadingState } from '../../../components/common/LoadingState';
-import type { SpaceSummary } from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
-import { SpaceCard } from './SpaceCard';
+import { EmptyState } from '@/components/common/EmptyState';
+import { ErrorState } from '@/components/common/ErrorState';
+import { LoadingState } from '@/components/common/LoadingState';
+import type { SpaceSummary } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
+import { SpaceCard } from '@/pages/spaces/components/SpaceCard';
 
 interface SpaceListProps {
   spaces: SpaceSummary[];

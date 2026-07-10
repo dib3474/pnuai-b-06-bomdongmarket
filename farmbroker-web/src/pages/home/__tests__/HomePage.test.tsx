@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { HomePage } from '../HomePage';
-import { roleCards } from '../constants/homeContent';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { HomePage } from '@/pages/home/HomePage';
+import { roleCards } from '@/pages/home/constants/homeContent';
 
 describe('HomePage', () => {
   it('온보딩 문구와 역할 상수를 렌더링한다', () => {

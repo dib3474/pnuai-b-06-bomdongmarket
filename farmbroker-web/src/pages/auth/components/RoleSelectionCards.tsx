@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react';
 
-import type { UserRole } from '../../../types/api';
-import { authRoles } from '../constants/authContent';
+import type { UserRole } from '@/types/api';
+import { authRoles } from '@/pages/auth/constants/authContent';
 
 interface RoleSelectionCardsProps {
   value: UserRole;

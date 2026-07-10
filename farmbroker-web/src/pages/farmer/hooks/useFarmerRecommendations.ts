@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   getFarmerRecommendations,
   type FarmerRecommendation,
-} from '../../../services/farmerService';
-import type { AsyncStatus } from '../../../types/common';
+} from '@/services/farmerService';
+import type { AsyncStatus } from '@/types/common';
 
 // 추천 공간 조회 상태를 페이지에서 분리해 필터/목록 UI가 데이터 소스에 묶이지 않게 합니다.
 export function useFarmerRecommendations() {

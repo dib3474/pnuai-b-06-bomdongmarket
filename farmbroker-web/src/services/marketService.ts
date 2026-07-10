@@ -1,6 +1,6 @@
-import { mockDelay } from '../mocks/handlers';
-import { mockMarketItems } from '../mocks/mockMarketItems';
-import type { MarketItem } from '../types/api';
+import { mockDelay } from '@/mocks/handlers';
+import { mockMarketItems } from '@/mocks/mockMarketItems';
+import type { MarketItem } from '@/types/api';
 
 export async function getMarketItems(
   params: {

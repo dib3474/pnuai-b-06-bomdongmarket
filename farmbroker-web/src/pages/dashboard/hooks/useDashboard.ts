@@ -4,13 +4,9 @@ import {
   getContracts,
   getDashboardMetrics,
   getReceivedMatchings,
-} from '../../../services/dashboardService';
-import type {
-  ContractSummary,
-  DashboardMetric,
-  MatchingRequest,
-} from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
+} from '@/services/dashboardService';
+import type { ContractSummary, DashboardMetric, MatchingRequest } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
 
 // 대시보드에 필요한 세 데이터 묶음을 병렬로 로드해 페이지 렌더링을 단순화합니다.
 export function useDashboard() {

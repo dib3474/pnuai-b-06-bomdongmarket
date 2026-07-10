@@ -1,9 +1,9 @@
 import { Save, Send } from 'lucide-react';
 
-import { Button } from '../../../components/common/Button';
-import { Card } from '../../../components/common/Card';
-import { predictionMetrics } from '../constants/farmerContent';
-import { formatCurrency } from '../../../utils/format';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { predictionMetrics } from '@/pages/farmer/constants/farmerContent';
+import { formatCurrency } from '@/utils/format';
 
 // 수익 예측 결과 화면의 핵심 수치를 한눈에 보이도록 정리합니다.
 export function PredictionResultCard() {

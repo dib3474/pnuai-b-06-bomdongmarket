@@ -1,8 +1,8 @@
 import { Search, SlidersHorizontal } from 'lucide-react';
 
-import { Input } from '../../../components/common/Input';
-import { sortOptions } from '../constants/spaceOptions';
-import type { SpaceFilterState } from '../types';
+import { Input } from '@/components/common/Input';
+import { sortOptions } from '@/pages/spaces/constants/spaceOptions';
+import type { SpaceFilterState } from '@/pages/spaces/types';
 
 interface SpaceFilterProps {
   filters: SpaceFilterState;

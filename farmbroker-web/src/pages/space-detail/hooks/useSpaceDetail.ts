@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { getRecommendation, getSpaceDetail } from '../../../services/spaceService';
-import type { AiRecommendation, SpaceDetail } from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
+import { getRecommendation, getSpaceDetail } from '@/services/spaceService';
+import type { AiRecommendation, SpaceDetail } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
 
 // 상세 페이지의 공간 조회와 AI 추천 조회를 분리해 각 상태를 독립적으로 표시합니다.
 export function useSpaceDetail(spaceId: number) {

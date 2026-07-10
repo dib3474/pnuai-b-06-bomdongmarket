@@ -2,10 +2,10 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { ContractsPage } from '../ContractsPage';
-import { DashboardPage } from '../DashboardPage';
-import { MyPage } from '../MyPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { ContractsPage } from '@/pages/dashboard/ContractsPage';
+import { DashboardPage } from '@/pages/dashboard/DashboardPage';
+import { MyPage } from '@/pages/dashboard/MyPage';
 
 describe('Dashboard pages', () => {
   it('지표, 매칭 신청, 계약 미리보기를 렌더링한다', async () => {

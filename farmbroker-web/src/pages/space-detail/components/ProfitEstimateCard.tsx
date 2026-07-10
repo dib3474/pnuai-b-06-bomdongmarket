@@ -1,12 +1,12 @@
 import { Bot, ChartNoAxesCombined, Send } from 'lucide-react';
 
-import { Badge } from '../../../components/common/Badge';
-import { Button } from '../../../components/common/Button';
-import { Card } from '../../../components/common/Card';
-import { LoadingState } from '../../../components/common/LoadingState';
-import type { AiRecommendation } from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
-import { formatCurrency, formatNumber } from '../../../utils/format';
+import { Badge } from '@/components/common/Badge';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { LoadingState } from '@/components/common/LoadingState';
+import type { AiRecommendation } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
+import { formatCurrency, formatNumber } from '@/utils/format';
 
 interface ProfitEstimateCardProps {
   recommendation: AiRecommendation | null;

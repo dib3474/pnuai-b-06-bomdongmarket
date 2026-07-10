@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import { cn } from '../../utils/cn';
+import { cn } from '@/utils/cn';
 
 type BadgeTone = 'green' | 'yellow' | 'blue' | 'slate' | 'red';
 

@@ -1,14 +1,14 @@
 import { Filter, MapPinned, Search } from 'lucide-react';
 import { useState } from 'react';
 
-import { EmptyState } from '../../components/common/EmptyState';
-import { ErrorState } from '../../components/common/ErrorState';
-import { Input } from '../../components/common/Input';
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { farmerFilterChips } from './constants/farmerContent';
-import { RecommendationCard } from './components/RecommendationCard';
-import { useFarmerRecommendations } from './hooks/useFarmerRecommendations';
+import { EmptyState } from '@/components/common/EmptyState';
+import { ErrorState } from '@/components/common/ErrorState';
+import { Input } from '@/components/common/Input';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { farmerFilterChips } from '@/pages/farmer/constants/farmerContent';
+import { RecommendationCard } from '@/pages/farmer/components/RecommendationCard';
+import { useFarmerRecommendations } from '@/pages/farmer/hooks/useFarmerRecommendations';
 
 // 도심 농부가 추천 공간을 탐색하고 매칭 상세로 이어지는 화면입니다.
 export function FarmerPage() {

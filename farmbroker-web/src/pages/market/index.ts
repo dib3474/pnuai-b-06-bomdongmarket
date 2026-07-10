@@ -1,2 +1,2 @@
-export { MarketPage } from './MarketPage';
-export { ProductDetailPage } from './ProductDetailPage';
+export { MarketPage } from '@/pages/market/MarketPage';
+export { ProductDetailPage } from '@/pages/market/ProductDetailPage';

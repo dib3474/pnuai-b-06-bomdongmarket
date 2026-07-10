@@ -1,4 +1,4 @@
-import type { MarketItem } from '../types/api';
+import type { MarketItem } from '@/types/api';
 
 export const mockMarketItems: MarketItem[] = [
   {

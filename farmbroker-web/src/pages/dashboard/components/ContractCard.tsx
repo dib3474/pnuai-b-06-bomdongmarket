@@ -1,10 +1,10 @@
 import { FileText } from 'lucide-react';
 
-import { Badge } from '../../../components/common/Badge';
-import { Button } from '../../../components/common/Button';
-import { Card } from '../../../components/common/Card';
-import type { ContractSummary } from '../../../types/api';
-import { formatCurrency } from '../../../utils/format';
+import { Badge } from '@/components/common/Badge';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import type { ContractSummary } from '@/types/api';
+import { formatCurrency } from '@/utils/format';
 
 interface ContractCardProps {
   contract: ContractSummary;

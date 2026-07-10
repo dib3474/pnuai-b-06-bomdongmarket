@@ -2,18 +2,18 @@ import { ArrowLeft, Minus, Plus, Route, ShoppingBag } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { Badge } from '../../components/common/Badge';
-import { Button } from '../../components/common/Button';
-import { Card } from '../../components/common/Card';
-import { ErrorState } from '../../components/common/ErrorState';
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { getMarketItem } from '../../services/marketService';
-import type { MarketItem } from '../../types/api';
-import type { AsyncStatus } from '../../types/common';
-import { formatCurrency, formatDate } from '../../utils/format';
-import { ProductTraceabilityTimeline } from './components/ProductTraceabilityTimeline';
+import { Badge } from '@/components/common/Badge';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { ErrorState } from '@/components/common/ErrorState';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { getMarketItem } from '@/services/marketService';
+import type { MarketItem } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
+import { formatCurrency, formatDate } from '@/utils/format';
+import { ProductTraceabilityTimeline } from '@/pages/market/components/ProductTraceabilityTimeline';
 
 // 상품 상세와 생산 이력, 수량 선택, 구매 CTA를 제공하는 마켓 상세 화면입니다.
 export function ProductDetailPage() {

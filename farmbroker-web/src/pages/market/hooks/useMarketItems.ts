@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { getMarketItems } from '../../../services/marketService';
-import type { MarketItem } from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
-import type { MarketCategory } from '../types';
+import { getMarketItems } from '@/services/marketService';
+import type { MarketItem } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
+import type { MarketCategory } from '@/pages/market/types';
 
 // 마켓 검색어와 카테고리 필터를 서비스 호출과 연결합니다.
 export function useMarketItems() {

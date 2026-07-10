@@ -1,7 +1,7 @@
-import { apiRequest, USE_MOCKS } from '../api/client';
-import { ENDPOINTS } from '../api/endpoints';
-import { createMockPage, mockDelay } from '../mocks/handlers';
-import { mockRecommendation, mockSpaces } from '../mocks/mockSpaces';
+import { apiRequest, USE_MOCKS } from '@/api/client';
+import { ENDPOINTS } from '@/api/endpoints';
+import { createMockPage, mockDelay } from '@/mocks/handlers';
+import { mockRecommendation, mockSpaces } from '@/mocks/mockSpaces';
 import type {
   AiRecommendation,
   PageResponse,
@@ -9,7 +9,7 @@ import type {
   SpaceDetail,
   SpaceSearchParams,
   SpaceSummary,
-} from '../types/api';
+} from '@/types/api';
 
 function toSummary(space: SpaceDetail): SpaceSummary {
   // 목록 카드에는 상세 필드가 필요 없으므로 API 명세의 요약 DTO 형태로 잘라냅니다.

@@ -1,4 +1,4 @@
-import type { MatchingStatus, SpaceStatus } from '../types/api';
+import type { MatchingStatus, SpaceStatus } from '@/types/api';
 
 const spaceStatusLabels: Record<SpaceStatus, string> = {
   AVAILABLE: '매칭 가능',

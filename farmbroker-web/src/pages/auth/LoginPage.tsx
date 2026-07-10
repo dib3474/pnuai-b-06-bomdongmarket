@@ -2,13 +2,13 @@ import { ArrowRight, Lock, Mail } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../components/common/Button';
-import { Card } from '../../components/common/Card';
-import { Input } from '../../components/common/Input';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import type { UserRole } from '../../types/api';
-import { RoleSelectionCards } from './components/RoleSelectionCards';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { Input } from '@/components/common/Input';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import type { UserRole } from '@/types/api';
+import { RoleSelectionCards } from '@/pages/auth/components/RoleSelectionCards';
 
 // mock 로그인 화면입니다. 역할 선택과 이메일 로그인을 한 흐름으로 시연합니다.
 export function LoginPage() {

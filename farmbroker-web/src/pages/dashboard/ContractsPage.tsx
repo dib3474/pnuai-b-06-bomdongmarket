@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { contractProcess } from '../farmer/constants/farmerContent';
-import { ContractCard } from './components/ContractCard';
-import { useDashboard } from './hooks/useDashboard';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { contractProcess } from '@/pages/farmer/constants/farmerContent';
+import { ContractCard } from '@/pages/dashboard/components/ContractCard';
+import { useDashboard } from '@/pages/dashboard/hooks/useDashboard';
 
 // 와이어프레임의 계약 관리 화면을 카드와 단계 표시기로 구현합니다.
 export function ContractsPage() {

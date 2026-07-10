@@ -1,10 +1,10 @@
 import { Building2, Droplets, Plug, UserRound, Wind } from 'lucide-react';
 
-import { Badge } from '../../../components/common/Badge';
-import { Card } from '../../../components/common/Card';
-import type { SpaceDetail } from '../../../types/api';
-import { formatArea, formatCurrency } from '../../../utils/format';
-import { getSpaceStatusLabel } from '../../../utils/labels';
+import { Badge } from '@/components/common/Badge';
+import { Card } from '@/components/common/Card';
+import type { SpaceDetail } from '@/types/api';
+import { formatArea, formatCurrency } from '@/utils/format';
+import { getSpaceStatusLabel } from '@/utils/labels';
 
 interface SpaceInfoPanelProps {
   space: SpaceDetail;

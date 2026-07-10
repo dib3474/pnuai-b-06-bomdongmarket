@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { getSpaces } from '../../../services/spaceService';
-import type { PageResponse, SpaceSummary } from '../../../types/api';
-import type { AsyncStatus } from '../../../types/common';
-import type { SpaceFilterState } from '../types';
+import { getSpaces } from '@/services/spaceService';
+import type { PageResponse, SpaceSummary } from '@/types/api';
+import type { AsyncStatus } from '@/types/common';
+import type { SpaceFilterState } from '@/pages/spaces/types';
 
 const initialPage: PageResponse<SpaceSummary> = {
   content: [],

@@ -1,4 +1,4 @@
-import type { AiRecommendation, CropDetail, SpaceDetail } from '../types/api';
+import type { AiRecommendation, CropDetail, SpaceDetail } from '@/types/api';
 
 export const mockSpaces: SpaceDetail[] = [
   {

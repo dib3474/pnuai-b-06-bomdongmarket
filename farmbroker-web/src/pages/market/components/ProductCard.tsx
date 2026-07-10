@@ -1,12 +1,12 @@
 import { Plus, Route } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { Badge } from '../../../components/common/Badge';
-import { Button } from '../../../components/common/Button';
-import { Card } from '../../../components/common/Card';
-import { ROUTES } from '../../../constants/routes';
-import type { MarketItem } from '../../../types/api';
-import { formatCurrency, formatDate } from '../../../utils/format';
+import { Badge } from '@/components/common/Badge';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import { ROUTES } from '@/constants/routes';
+import type { MarketItem } from '@/types/api';
+import { formatCurrency, formatDate } from '@/utils/format';
 
 interface ProductCardProps {
   item: MarketItem;

@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { AppLayout } from '../components/layout/AppLayout';
-import { ROUTES } from '../constants/routes';
-import { LoginPage } from '../pages/auth';
-import { ContractsPage, DashboardPage, MyPage } from '../pages/dashboard';
-import { FarmerPage, ProfitPredictionPage } from '../pages/farmer';
-import { HomePage } from '../pages/home';
-import { MarketPage, ProductDetailPage } from '../pages/market';
-import { SpaceDetailPage } from '../pages/space-detail';
-import { SpaceCreatePage, SpacesPage } from '../pages/spaces';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { ROUTES } from '@/constants/routes';
+import { LoginPage } from '@/pages/auth';
+import { ContractsPage, DashboardPage, MyPage } from '@/pages/dashboard';
+import { FarmerPage, ProfitPredictionPage } from '@/pages/farmer';
+import { HomePage } from '@/pages/home';
+import { MarketPage, ProductDetailPage } from '@/pages/market';
+import { SpaceDetailPage } from '@/pages/space-detail';
+import { SpaceCreatePage, SpacesPage } from '@/pages/spaces';
 
 export function AppRouter() {
   return (

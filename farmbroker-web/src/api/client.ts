@@ -1,5 +1,5 @@
-import { APP_INFO } from '../constants/appInfo';
-import type { ApiResponse } from '../types/api';
+import { APP_INFO } from '@/constants/appInfo';
+import type { ApiResponse } from '@/types/api';
 
 type RequestOptions = Omit<RequestInit, 'body'> & {
   body?: unknown;

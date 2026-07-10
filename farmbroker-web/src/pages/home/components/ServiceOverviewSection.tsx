@@ -1,9 +1,9 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { Card } from '../../../components/common/Card';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { quickActions, roleCards } from '../constants/homeContent';
+import { Card } from '@/components/common/Card';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { quickActions, roleCards } from '@/pages/home/constants/homeContent';
 
 // 역할 선택과 데모용 빠른 액션을 한곳에 모아 발표 흐름을 빠르게 시작하게 합니다.
 export function ServiceOverviewSection() {

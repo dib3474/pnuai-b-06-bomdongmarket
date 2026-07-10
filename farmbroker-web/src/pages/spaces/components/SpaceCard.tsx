@@ -1,12 +1,12 @@
 import { ArrowRight, Droplets, MapPin, Plug, Wind } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { Badge } from '../../../components/common/Badge';
-import { Card } from '../../../components/common/Card';
-import { ROUTES } from '../../../constants/routes';
-import type { SpaceSummary } from '../../../types/api';
-import { formatArea, formatCurrency } from '../../../utils/format';
-import { getSpaceStatusLabel } from '../../../utils/labels';
+import { Badge } from '@/components/common/Badge';
+import { Card } from '@/components/common/Card';
+import { ROUTES } from '@/constants/routes';
+import type { SpaceSummary } from '@/types/api';
+import { formatArea, formatCurrency } from '@/utils/format';
+import { getSpaceStatusLabel } from '@/utils/labels';
 
 interface SpaceCardProps {
   space: SpaceSummary;

@@ -1,12 +1,12 @@
 import { Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { buttonStyles } from '../../components/common/buttonStyles';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { SpaceFilter } from './components/SpaceFilter';
-import { SpaceList } from './components/SpaceList';
-import { useSpaces } from './hooks/useSpaces';
+import { buttonStyles } from '@/components/common/buttonStyles';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { SpaceFilter } from '@/pages/spaces/components/SpaceFilter';
+import { SpaceList } from '@/pages/spaces/components/SpaceList';
+import { useSpaces } from '@/pages/spaces/hooks/useSpaces';
 
 // 공개 공간 탐색 화면입니다. API 명세의 검색/필터/정렬 조건을 mock 서비스와 연결합니다.
 export function SpacesPage() {

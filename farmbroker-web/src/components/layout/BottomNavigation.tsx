@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
-import { MOBILE_NAVIGATION } from '../../constants/navigation';
-import { cn } from '../../utils/cn';
+import { MOBILE_NAVIGATION } from '@/constants/navigation';
+import { cn } from '@/utils/cn';
 
 // 모바일 화면의 주 이동 수단입니다. 와이어프레임의 앱형 하단 탭을 웹에 맞춰 옮겼습니다.
 export function BottomNavigation() {

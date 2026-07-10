@@ -1,7 +1,7 @@
 import { TrendingUp } from 'lucide-react';
 
-import { Card } from '../../../components/common/Card';
-import type { DashboardMetric } from '../../../types/api';
+import { Card } from '@/components/common/Card';
+import type { DashboardMetric } from '@/types/api';
 
 interface MetricCardProps {
   metric: DashboardMetric;

@@ -1,7 +1,7 @@
-import { mockDelay } from '../mocks/handlers';
-import { mockRecommendation } from '../mocks/mockSpaces';
-import type { AiRecommendation, SpaceSummary } from '../types/api';
-import { getSpaces } from './spaceService';
+import { mockDelay } from '@/mocks/handlers';
+import { mockRecommendation } from '@/mocks/mockSpaces';
+import type { AiRecommendation, SpaceSummary } from '@/types/api';
+import { getSpaces } from '@/services/spaceService';
 
 export interface FarmerRecommendation extends SpaceSummary {
   matchingScore: number;

@@ -1,8 +1,8 @@
 import { ArrowRight, ShoppingBasket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { buttonStyles } from '../../../components/common/buttonStyles';
-import { heroContent, valuePoints } from '../constants/homeContent';
+import { buttonStyles } from '@/components/common/buttonStyles';
+import { heroContent, valuePoints } from '@/pages/home/constants/homeContent';
 
 // 홈 첫 화면에서 서비스의 세 사용자군과 핵심 가치를 바로 이해시키는 온보딩 히어로입니다.
 export function HeroSection() {

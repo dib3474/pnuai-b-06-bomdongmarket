@@ -1,15 +1,15 @@
 import { Bell, Plus, UserRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { buttonStyles } from '../../components/common/buttonStyles';
-import { ErrorState } from '../../components/common/ErrorState';
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { ContractCard } from './components/ContractCard';
-import { MatchingRequestCard } from './components/MatchingRequestCard';
-import { MetricCard } from './components/MetricCard';
-import { useDashboard } from './hooks/useDashboard';
+import { buttonStyles } from '@/components/common/buttonStyles';
+import { ErrorState } from '@/components/common/ErrorState';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { ContractCard } from '@/pages/dashboard/components/ContractCard';
+import { MatchingRequestCard } from '@/pages/dashboard/components/MatchingRequestCard';
+import { MetricCard } from '@/pages/dashboard/components/MetricCard';
+import { useDashboard } from '@/pages/dashboard/hooks/useDashboard';
 
 // 로그인 이후의 홈 대시보드로, 소유자 관점의 요약과 신청 검토 흐름을 제공합니다.
 export function DashboardPage() {

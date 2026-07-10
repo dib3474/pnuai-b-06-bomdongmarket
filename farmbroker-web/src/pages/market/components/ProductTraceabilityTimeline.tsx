@@ -1,6 +1,6 @@
 import { CheckCircle2 } from 'lucide-react';
 
-import { traceabilitySteps } from '../constants/marketOptions';
+import { traceabilitySteps } from '@/pages/market/constants/marketOptions';
 
 // 상품 상세에서 생산 이력을 모바일에서도 읽기 쉬운 세로 타임라인으로 표시합니다.
 export function ProductTraceabilityTimeline() {

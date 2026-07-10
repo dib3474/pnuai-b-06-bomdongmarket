@@ -1,14 +1,14 @@
 import { MapPin, Search } from 'lucide-react';
 
-import { EmptyState } from '../../components/common/EmptyState';
-import { ErrorState } from '../../components/common/ErrorState';
-import { Input } from '../../components/common/Input';
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ProductCard } from './components/ProductCard';
-import { marketCategories } from './constants/marketOptions';
-import { useMarketItems } from './hooks/useMarketItems';
-import type { MarketCategory } from './types';
+import { EmptyState } from '@/components/common/EmptyState';
+import { ErrorState } from '@/components/common/ErrorState';
+import { Input } from '@/components/common/Input';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ProductCard } from '@/pages/market/components/ProductCard';
+import { marketCategories } from '@/pages/market/constants/marketOptions';
+import { useMarketItems } from '@/pages/market/hooks/useMarketItems';
+import type { MarketCategory } from '@/pages/market/types';
 
 // 소비자가 근처 스마트팜 상품을 검색하고 담을 수 있는 로컬 마켓 화면입니다.
 export function MarketPage() {

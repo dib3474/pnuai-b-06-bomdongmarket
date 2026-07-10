@@ -1,11 +1,11 @@
 import { ArrowRight, MapPin, Percent } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { Badge } from '../../../components/common/Badge';
-import { Card } from '../../../components/common/Card';
-import { ROUTES } from '../../../constants/routes';
-import type { FarmerRecommendation } from '../../../services/farmerService';
-import { formatArea, formatCurrency } from '../../../utils/format';
+import { Badge } from '@/components/common/Badge';
+import { Card } from '@/components/common/Card';
+import { ROUTES } from '@/constants/routes';
+import type { FarmerRecommendation } from '@/services/farmerService';
+import { formatArea, formatCurrency } from '@/utils/format';
 
 interface RecommendationCardProps {
   recommendation: FarmerRecommendation;

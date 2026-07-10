@@ -1,11 +1,11 @@
 import { Check, X } from 'lucide-react';
 
-import { Badge } from '../../../components/common/Badge';
-import { Button } from '../../../components/common/Button';
-import { Card } from '../../../components/common/Card';
-import type { MatchingRequest } from '../../../types/api';
-import { formatCurrency, formatDate } from '../../../utils/format';
-import { getMatchingStatusLabel } from '../../../utils/labels';
+import { Badge } from '@/components/common/Badge';
+import { Button } from '@/components/common/Button';
+import { Card } from '@/components/common/Card';
+import type { MatchingRequest } from '@/types/api';
+import { formatCurrency, formatDate } from '@/utils/format';
+import { getMatchingStatusLabel } from '@/utils/labels';
 
 interface MatchingRequestCardProps {
   request: MatchingRequest;

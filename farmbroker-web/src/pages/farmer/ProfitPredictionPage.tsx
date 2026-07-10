@@ -1,9 +1,9 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { PredictionResultCard } from './components/PredictionResultCard';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { PredictionResultCard } from '@/pages/farmer/components/PredictionResultCard';
 
 // 공간 등록 이후 시연할 수 있는 수익 예측 결과 화면입니다.
 export function ProfitPredictionPage() {

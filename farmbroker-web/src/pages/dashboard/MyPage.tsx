@@ -1,9 +1,9 @@
 import { ChevronRight, UserRound } from 'lucide-react';
 
-import { Badge } from '../../components/common/Badge';
-import { Card } from '../../components/common/Card';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { profileMenuItems } from './constants/dashboardContent';
+import { Badge } from '@/components/common/Badge';
+import { Card } from '@/components/common/Card';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { profileMenuItems } from '@/pages/dashboard/constants/dashboardContent';
 
 // 모바일 와이어프레임의 마이페이지 항목을 단순하고 데모 가능한 목록으로 구성합니다.
 export function MyPage() {

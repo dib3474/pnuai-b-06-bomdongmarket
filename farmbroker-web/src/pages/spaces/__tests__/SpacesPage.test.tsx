@@ -2,9 +2,9 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { SpaceList } from '../components/SpaceList';
-import { SpacesPage } from '../SpacesPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { SpaceList } from '@/pages/spaces/components/SpaceList';
+import { SpacesPage } from '@/pages/spaces/SpacesPage';
 
 describe('SpacesPage', () => {
   it('mock 서비스의 등록 공간을 렌더링한다', async () => {

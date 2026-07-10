@@ -2,9 +2,9 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { FarmerPage } from '../FarmerPage';
-import { ProfitPredictionPage } from '../ProfitPredictionPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { FarmerPage } from '@/pages/farmer/FarmerPage';
+import { ProfitPredictionPage } from '@/pages/farmer/ProfitPredictionPage';
 
 describe('Farmer pages', () => {
   it('추천 공간을 렌더링하고 키워드 필터링을 지원한다', async () => {

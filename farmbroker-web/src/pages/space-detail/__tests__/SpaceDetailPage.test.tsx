@@ -2,8 +2,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { SpaceDetailPage } from '../SpaceDetailPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { SpaceDetailPage } from '@/pages/space-detail/SpaceDetailPage';
 
 describe('SpaceDetailPage', () => {
   it('상세 데이터를 불러오고 AI 추천을 실행한다', async () => {

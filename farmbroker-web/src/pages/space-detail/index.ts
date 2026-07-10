@@ -1,1 +1,1 @@
-export { SpaceDetailPage } from './SpaceDetailPage';
+export { SpaceDetailPage } from '@/pages/space-detail/SpaceDetailPage';

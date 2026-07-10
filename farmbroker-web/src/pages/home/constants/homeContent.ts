@@ -7,7 +7,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
-import { ROUTES } from '../../../constants/routes';
+import { ROUTES } from '@/constants/routes';
 
 export const heroContent = {
   title: '비어 있는 공간을 도심 스마트팜으로 바꾸세요',

@@ -1,4 +1,4 @@
-import type { SelectOption } from '../../../types/common';
+import type { SelectOption } from '@/types/common';
 
 export const sortOptions: SelectOption<'latest' | 'area' | 'rent'>[] = [
   { label: '최신순', value: 'latest' },

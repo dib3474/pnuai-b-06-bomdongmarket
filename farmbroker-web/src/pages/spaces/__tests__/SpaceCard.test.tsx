@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { mockSpaces } from '../../../mocks/mockSpaces';
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { SpaceCard } from '../components/SpaceCard';
+import { mockSpaces } from '@/mocks/mockSpaces';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { SpaceCard } from '@/pages/spaces/components/SpaceCard';
 
 describe('SpaceCard', () => {
   it('공간 요약 정보와 상세 링크를 표시한다', () => {

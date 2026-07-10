@@ -1,4 +1,4 @@
-import type { ContractSummary, DashboardMetric, MatchingRequest } from '../types/api';
+import type { ContractSummary, DashboardMetric, MatchingRequest } from '@/types/api';
 
 export const mockDashboardMetrics: DashboardMetric[] = [
   {

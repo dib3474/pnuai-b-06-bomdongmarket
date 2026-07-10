@@ -2,8 +2,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { renderWithProviders } from '../../../test/renderWithProviders';
-import { LoginPage } from '../LoginPage';
+import { renderWithProviders } from '@/test/renderWithProviders';
+import { LoginPage } from '@/pages/auth/LoginPage';
 
 describe('LoginPage', () => {
   it('역할 카드와 로그인 폼을 렌더링한다', async () => {

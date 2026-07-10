@@ -1,10 +1,10 @@
-import { mockDelay } from '../mocks/handlers';
+import { mockDelay } from '@/mocks/handlers';
 import {
   mockContracts,
   mockDashboardMetrics,
   mockMatchingRequests,
-} from '../mocks/mockDashboard';
-import type { ContractSummary, DashboardMetric, MatchingRequest } from '../types/api';
+} from '@/mocks/mockDashboard';
+import type { ContractSummary, DashboardMetric, MatchingRequest } from '@/types/api';
 
 export async function getDashboardMetrics(): Promise<DashboardMetric[]> {
   await mockDelay();

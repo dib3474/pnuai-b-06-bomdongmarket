@@ -1,11 +1,11 @@
 import { ShoppingBasket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { Badge } from '../../../components/common/Badge';
-import { buttonStyles } from '../../../components/common/buttonStyles';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { ROUTES } from '../../../constants/routes';
-import { marketPreviewItems } from '../constants/homeContent';
+import { Badge } from '@/components/common/Badge';
+import { buttonStyles } from '@/components/common/buttonStyles';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { marketPreviewItems } from '@/pages/home/constants/homeContent';
 
 // 로컬 마켓의 신선도와 이력 추적 가치를 홈 하단에서 미리 보여줍니다.
 export function MarketPreviewSection() {

@@ -1,10 +1,10 @@
 import { Leaf, LogIn, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { APP_INFO } from '../../constants/appInfo';
-import { ROUTES } from '../../constants/routes';
-import { buttonStyles } from '../common/buttonStyles';
-import { DesktopNavigation } from './DesktopNavigation';
+import { APP_INFO } from '@/constants/appInfo';
+import { ROUTES } from '@/constants/routes';
+import { buttonStyles } from '@/components/common/buttonStyles';
+import { DesktopNavigation } from '@/components/layout/DesktopNavigation';
 
 // 브랜드, 데스크탑 네비게이션, 빠른 액션을 담당하는 상단 앱 바입니다.
 export function Header() {

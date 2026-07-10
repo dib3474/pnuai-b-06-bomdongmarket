@@ -1,7 +1,7 @@
 import { Home, LayoutDashboard, MapPinned, ShoppingBasket, Sprout } from 'lucide-react';
 
-import { ROUTES } from './routes';
-import type { NavigationItem } from '../types/common';
+import { ROUTES } from '@/constants/routes';
+import type { NavigationItem } from '@/types/common';
 
 export const PRIMARY_NAVIGATION: NavigationItem[] = [
   { label: '홈', href: ROUTES.home, icon: Home },

@@ -1,14 +1,14 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 
-import { ErrorState } from '../../components/common/ErrorState';
-import { LoadingState } from '../../components/common/LoadingState';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ROUTES } from '../../constants/routes';
-import { ProfitEstimateCard } from './components/ProfitEstimateCard';
-import { SpaceImageGallery } from './components/SpaceImageGallery';
-import { SpaceInfoPanel } from './components/SpaceInfoPanel';
-import { useSpaceDetail } from './hooks/useSpaceDetail';
+import { ErrorState } from '@/components/common/ErrorState';
+import { LoadingState } from '@/components/common/LoadingState';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { ROUTES } from '@/constants/routes';
+import { ProfitEstimateCard } from '@/pages/space-detail/components/ProfitEstimateCard';
+import { SpaceImageGallery } from '@/pages/space-detail/components/SpaceImageGallery';
+import { SpaceInfoPanel } from '@/pages/space-detail/components/SpaceInfoPanel';
+import { useSpaceDetail } from '@/pages/space-detail/hooks/useSpaceDetail';
 
 // 공간 상세 조회 API와 AI 추천 API를 함께 시연하는 상세 화면입니다.
 export function SpaceDetailPage() {

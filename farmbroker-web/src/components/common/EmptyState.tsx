@@ -1,6 +1,6 @@
 import { SearchX } from 'lucide-react';
 
-import { Button } from './Button';
+import { Button } from '@/components/common/Button';
 
 interface EmptyStateProps {
   title: string;

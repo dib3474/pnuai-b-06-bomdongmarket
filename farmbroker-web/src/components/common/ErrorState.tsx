@@ -1,6 +1,6 @@
 import { AlertTriangle } from 'lucide-react';
 
-import { Button } from './Button';
+import { Button } from '@/components/common/Button';
 
 interface ErrorStateProps {
   title?: string;
