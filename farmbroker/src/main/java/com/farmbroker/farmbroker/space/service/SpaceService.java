@@ -9,7 +9,9 @@ import com.farmbroker.farmbroker.space.dto.SpaceCreateRequest;
 import com.farmbroker.farmbroker.space.dto.SpaceDeleteResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceDetailResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceListItemResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceListResponse;
 import com.farmbroker.farmbroker.space.dto.SpaceResponse;
+import com.farmbroker.farmbroker.space.dto.SpaceSummaryDto;
 import com.farmbroker.farmbroker.space.dto.SpaceUpdateRequest;
 import com.farmbroker.farmbroker.space.repository.SpaceImageRepository;
 import com.farmbroker.farmbroker.space.repository.SpaceRepository;
@@ -17,8 +19,14 @@ import com.farmbroker.farmbroker.user.domain.User;
 import com.farmbroker.farmbroker.user.domain.UserRole;
 import com.farmbroker.farmbroker.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,6 +82,43 @@ public class SpaceService {
         return SpaceDetailResponse.from(space, imageUrls);
     }
 
+    // 정렬 파라미터 값 상수 (명세 2.2)
+    private static final String SORT_LATEST = "latest";
+    private static final String SORT_AREA = "area";
+    private static final String SORT_RENT = "rent";
+
+    // 공개 목록 검색 — deleted=false && AVAILABLE만. keyword/minArea/maxRent 필터 + latest/area/rent 정렬 + 페이징
+    public SpaceListResponse getList(String keyword, BigDecimal minArea, Integer maxRent,
+                                     String sort, int page, int size) {
+        if (page < 0 || size <= 0) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR);
+        }
+        Pageable pageable = PageRequest.of(page, size, toSort(sort));
+        Page<Space> spaces = spaceRepository.search(emptyToNull(keyword), minArea, maxRent, pageable);
+
+        Map<Long, String> thumbnails = findThumbnails(spaces.getContent());
+        List<SpaceListItemResponse> content = spaces.getContent().stream()
+                .map(space -> SpaceListItemResponse.from(space, thumbnails.get(space.getId())))
+                .toList();
+        return SpaceListResponse.of(content, spaces.getNumber(), spaces.getSize(),
+                spaces.getTotalElements(), spaces.getTotalPages());
+    }
+
+    // latest: 최신순(기본) / area: 면적 큰 순 / rent: 월세 낮은 순. 그 외 값은 400 VALIDATION_ERROR (명세 2.2)
+    private Sort toSort(String sort) {
+        return switch (sort == null ? SORT_LATEST : sort) {
+            case SORT_LATEST -> Sort.by(Sort.Direction.DESC, "createdAt");
+            case SORT_AREA -> Sort.by(Sort.Direction.DESC, "area");
+            case SORT_RENT -> Sort.by(Sort.Direction.ASC, "monthlyRent");
+            default -> throw new BusinessException(ErrorCode.VALIDATION_ERROR);
+        };
+    }
+
+    // 빈 문자열 keyword는 필터 미적용(null)으로 취급한다
+    private String emptyToNull(String value) {
+        return (value == null || value.isBlank()) ? null : value;
+    }
+
     // 내가 등록한 공간 — status 무관 전부, deleted 제외, 최신순. MVP 기준 페이징 없음 (명세 2.4)
     public List<SpaceListItemResponse> getMy(Long userId) {
         List<Space> spaces = spaceRepository.findByOwnerIdAndDeletedFalseOrderByCreatedAtDesc(userId);
@@ -121,6 +166,40 @@ public class SpaceService {
         validateOwner(space, userId);
         space.softDelete();
         return SpaceDeleteResponse.of(spaceId, true);
+    }
+
+    // ── BE3(matching) 내부 인터페이스 (작업명세서 5.2 규약 — 임의 변경 금지) ──────
+
+    // 단건 요약 조회 — 공개 API(getDetail)와 달리 deleted 여부와 무관하게 반환한다.
+    // BE3가 신청 시 deleted를 보고 거부하고, 매칭 이력에선 삭제된 공간 제목도 노출해야 하기 때문.
+    // 존재하지 않는 spaceId만 SPACE_NOT_FOUND.
+    public SpaceSummaryDto getSummaryById(Long spaceId) {
+        Space space = spaceRepository.findById(spaceId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.SPACE_NOT_FOUND));
+        Map<Long, String> thumbnails = findThumbnails(List.of(space));
+        return SpaceSummaryDto.from(space, thumbnails.get(space.getId()));
+    }
+
+    // 배치 요약 조회 — BE3 매칭 목록용 (N+1 방지). 존재하는 공간만 담아 반환하며 예외를 던지지 않는다
+    public List<SpaceSummaryDto> getSummariesByIds(List<Long> spaceIds) {
+        List<Space> spaces = spaceRepository.findAllById(spaceIds);
+        Map<Long, String> thumbnails = findThumbnails(spaces);
+        return spaces.stream()
+                .map(space -> SpaceSummaryDto.from(space, thumbnails.get(space.getId())))
+                .toList();
+    }
+
+    // 매칭 수락 시 BE3 accept() 트랜잭션 안에서 호출된다.
+    // 전파는 반드시 REQUIRED(기본값) — REQUIRES_NEW로 바꾸면 매칭 수락 롤백 시 status만 남는 사고가 난다.
+    // 클래스 기본이 readOnly라 쓰기 @Transactional을 별도 부착한다 (작업명세서 5.2).
+    @Transactional
+    public void markMatched(Long spaceId) {
+        Space space = spaceRepository.findById(spaceId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.SPACE_NOT_FOUND));
+        if (space.isDeleted() || space.getStatus() != SpaceStatus.AVAILABLE) {
+            throw new BusinessException(ErrorCode.SPACE_NOT_AVAILABLE);
+        }
+        space.markMatched();
     }
 
     private void validateOwner(Space space, Long userId) {

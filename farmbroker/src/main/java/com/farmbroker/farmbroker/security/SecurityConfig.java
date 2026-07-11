@@ -45,6 +45,10 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/signup", "/auth/login").permitAll()
                 // 인증 불필요 — 작물 백과사전 공개 조회 (백엔드 3, 2026-07-05 협의로 백엔드 3이 직접 추가)
                 .requestMatchers(HttpMethod.GET, "/crops", "/crops/**").permitAll()
+                // 내 공간 조회는 인증 유지 — 아래 /spaces/* 와일드카드가 /spaces/my까지 열지 않도록 반드시 먼저 선언
+                .requestMatchers(HttpMethod.GET, "/spaces/my").authenticated()
+                // 인증 불필요 — 공간 목록/상세는 비로그인 조회 허용 (space 도메인 명세 2.2/2.3)
+                .requestMatchers(HttpMethod.GET, "/spaces", "/spaces/*").permitAll()
                 // 그 외 모든 요청은 인증 필요 (다른 팀원 도메인 API도 자동 보호됨)
                 .anyRequest().authenticated()
             )
