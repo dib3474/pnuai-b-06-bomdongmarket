@@ -40,7 +40,7 @@ src/
 - `src/api/endpoints.ts` mirrors the backend API spec paths.
 - `src/api/client.ts` parses the common Swagger `ApiResponse`, attaches the JWT, and normalizes API errors.
 - Authentication/user, spaces, crops, AI recommendations, and matchings use the Spring API at `http://localhost:8080/api` by default.
-- Market/product and contract-only data remain mocked because those endpoints are not present in the current Swagger document.
+- Market/product data remain mocked because those endpoints are not present in the current Swagger document. Contract cards are derived from matching responses for the same reason.
 - Copy `.env.example` to `.env` to change `VITE_API_BASE_URL` or set `VITE_USE_MOCKS=true` for an offline UI demo.
 
 ```bash
