@@ -12,9 +12,7 @@ function buildQuery(params: CropSearchParams) {
   return searchParams.toString();
 }
 
-export async function getCrops(
-  params: CropSearchParams = {},
-): Promise<CropSummary[]> {
+export async function getCrops(params: CropSearchParams = {}): Promise<CropSummary[]> {
   if (!USE_MOCKS) {
     const query = buildQuery(params);
     const response = await apiRequest<CropSummary[]>(

@@ -107,9 +107,7 @@ export async function getMySpaces(): Promise<SpaceSummary[]> {
   return mockSpaces.map(toSummary);
 }
 
-export async function createSpace(
-  input: SpaceCreateInput,
-): Promise<SpaceMutationResult> {
+export async function createSpace(input: SpaceCreateInput): Promise<SpaceMutationResult> {
   if (!USE_MOCKS) {
     const response = await apiRequest<SpaceMutationResult>(ENDPOINTS.spaces.create, {
       method: 'POST',

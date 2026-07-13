@@ -5,10 +5,7 @@ import {
   mockDashboardMetrics,
   mockMatchingRequests,
 } from '@/mocks/mockDashboard';
-import {
-  getMyMatchings,
-  getReceivedMatchings,
-} from '@/services/matchingService';
+import { getMyMatchings, getReceivedMatchings } from '@/services/matchingService';
 import { getMySpaces } from '@/services/spaceService';
 import type {
   ContractSummary,

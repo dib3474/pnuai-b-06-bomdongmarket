@@ -55,9 +55,7 @@ export async function getMyMatchings(): Promise<MyMatching[]> {
 
 export async function getReceivedMatchings(): Promise<MatchingRequest[]> {
   if (!USE_MOCKS) {
-    const response = await apiRequest<MatchingRequest[]>(
-      ENDPOINTS.matchings.received,
-    );
+    const response = await apiRequest<MatchingRequest[]>(ENDPOINTS.matchings.received);
     return response.data;
   }
 

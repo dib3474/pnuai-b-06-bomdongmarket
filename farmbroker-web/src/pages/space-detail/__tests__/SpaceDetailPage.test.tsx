@@ -29,9 +29,7 @@ describe('SpaceDetailPage', () => {
     });
 
     await user.click(await screen.findByRole('button', { name: /AI 추천 실행/i }));
-    await user.click(
-      await screen.findByRole('button', { name: /매칭 신청 보내기/i }),
-    );
+    await user.click(await screen.findByRole('button', { name: /매칭 신청 보내기/i }));
 
     expect(await screen.findByText('매칭 신청이 완료되었습니다.')).toBeInTheDocument();
   });

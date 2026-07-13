@@ -124,12 +124,8 @@ export function DashboardPage() {
                   <MatchingRequestCard
                     isUpdating={updatingMatchingId === request.matchingId}
                     key={request.matchingId}
-                    onAccept={() =>
-                      void respondToMatching(request.matchingId, 'accept')
-                    }
-                    onReject={() =>
-                      void respondToMatching(request.matchingId, 'reject')
-                    }
+                    onAccept={() => void respondToMatching(request.matchingId, 'accept')}
+                    onReject={() => void respondToMatching(request.matchingId, 'reject')}
                     request={request}
                   />
                 ))}

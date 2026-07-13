@@ -42,9 +42,7 @@ export function SpaceCreatePage() {
       });
       setSaved(true);
     } catch (caught) {
-      setError(
-        caught instanceof Error ? caught.message : '공간 등록에 실패했습니다.',
-      );
+      setError(caught instanceof Error ? caught.message : '공간 등록에 실패했습니다.');
     } finally {
       setIsSaving(false);
     }
@@ -82,13 +80,7 @@ export function SpaceCreatePage() {
               required
               type="number"
             />
-            <Input
-              label="층수"
-              name="floor"
-              placeholder="예: 2"
-              required
-              type="number"
-            />
+            <Input label="층수" name="floor" placeholder="예: 2" required type="number" />
             <Input
               label="희망 월세"
               min={0}

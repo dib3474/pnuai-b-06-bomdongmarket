@@ -69,9 +69,7 @@ export function useLoginForm(onSubmit: (values: LoginFormValues) => Promise<void
     try {
       await onSubmit(values);
     } catch (caught) {
-      setSubmitError(
-        caught instanceof Error ? caught.message : '로그인에 실패했습니다.',
-      );
+      setSubmitError(caught instanceof Error ? caught.message : '로그인에 실패했습니다.');
     } finally {
       setIsSubmitting(false);
     }

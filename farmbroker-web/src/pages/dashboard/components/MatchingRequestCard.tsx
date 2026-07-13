@@ -56,12 +56,7 @@ export function MatchingRequestCard({
             <Check className="h-4 w-4" aria-hidden />
             {isUpdating ? '처리 중...' : '수락'}
           </Button>
-          <Button
-            disabled={isUpdating}
-            onClick={onReject}
-            size="sm"
-            variant="outline"
-          >
+          <Button disabled={isUpdating} onClick={onReject} size="sm" variant="outline">
             <X className="h-4 w-4" aria-hidden />
             거절
           </Button>

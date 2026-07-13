@@ -13,7 +13,10 @@ const mockUser: User = {
 export async function login(input: LoginInput): Promise<LoginResult> {
   if (USE_MOCKS) {
     await mockDelay();
-    return { accessToken: 'mock-access-token', user: { ...mockUser, email: input.email } };
+    return {
+      accessToken: 'mock-access-token',
+      user: { ...mockUser, email: input.email },
+    };
   }
 
   const response = await apiRequest<LoginResult>(ENDPOINTS.auth.login, {
