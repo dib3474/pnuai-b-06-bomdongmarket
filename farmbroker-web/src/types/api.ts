@@ -12,12 +12,35 @@ export interface ApiResponse<T> {
   success: boolean;
   message: string;
   data: T;
+  errorCode?: string;
 }
 
 export interface ApiErrorResponse {
   success: false;
   message: string;
   errorCode: string;
+}
+
+export interface User {
+  userId: number;
+  email: string;
+  nickname: string;
+  role: UserRole;
+}
+
+export interface LoginInput {
+  email: string;
+  password: string;
+}
+
+export interface LoginResult {
+  accessToken: string;
+  user: User;
+}
+
+export interface SignupInput extends LoginInput {
+  nickname: string;
+  role: UserRole;
 }
 
 export interface PageResponse<T> {
