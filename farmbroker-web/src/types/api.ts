@@ -100,6 +100,24 @@ export interface SpaceCreateInput {
   imageUrls?: string[];
 }
 
+export type SpaceUpdateInput = Partial<SpaceCreateInput> & {
+  status?: Extract<SpaceStatus, 'AVAILABLE' | 'CLOSED'>;
+};
+
+export interface SpaceMutationResult extends SpaceCreateInput {
+  spaceId: number;
+  imageUrls: string[];
+  status: SpaceStatus;
+  ownerId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SpaceDeleteResult {
+  spaceId: number;
+  deleted: boolean;
+}
+
 export interface CropSummary {
   cropId: number;
   name: string;
