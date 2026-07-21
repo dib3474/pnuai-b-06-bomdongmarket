@@ -12,6 +12,7 @@ describe('Header', () => {
 
   it('데스크톱 내비게이션에 넓은 간격과 클릭 영역을 제공한다', () => {
     const { getByRole } = renderWithProviders(<Header />);
+    expect(getByRole('banner')).toHaveAttribute('data-build', 'auth-header-v2');
     const navigation = getByRole('navigation', { name: '주요 내비게이션' });
 
     expect(navigation).toHaveClass('gap-2', 'xl:gap-3');
